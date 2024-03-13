@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Button from '@mui/material/Button';
+import { Stack, Typography, Container } from '@mui/material';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      {/* Container to center content */}
+      <Container maxWidth="sm" style={{ textAlign: 'center' }}>
+        {/* Typography for the heading, automatically centered by the container's text alignment */}
+        <Typography variant="h5" component="h2" style={{ color: '#FFF', marginBottom: '20px' }}>
+          Set timer for morning
+        </Typography>
+
+        {/* Stack for the buttons, centered horizontally and vertically */}
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="center" // Center items horizontally in the stack
+          alignItems="center" // Center items vertically in the stack
         >
-          Learn React
-        </a>
-      </header>
+          <Button variant="outlined" style={{ borderColor: '#FFF', color: '#FFF' }}>8</Button>
+          <Button variant="outlined" style={{ borderColor: '#FFF', color: '#FFF' }}>15</Button>
+          <Button variant="contained" style={{ backgroundColor: '#4CAF50', color: '#FFF' }}>Set</Button>
+        </Stack>
+      </Container>
     </div>
   );
 }
