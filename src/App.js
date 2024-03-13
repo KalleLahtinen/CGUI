@@ -1,31 +1,38 @@
 import React from 'react';
-import './App.css';
-import Button from '@mui/material/Button';
-import { Stack, Typography, Container } from '@mui/material';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Button } from '@mui/material';
+
+// Pages
+const Home = () => (
+  <div style={{ padding: 20 }}>
+    <h2>Home Page</h2>
+    <Link to="/about" style={{ textDecoration: 'none' }}>
+      <Button variant="contained" color="primary">
+        Go to About
+      </Button>
+    </Link>
+  </div>
+);
+
+const About = () => (
+  <div style={{ padding: 20 }}>
+    <h2>About Page</h2>
+    <Link to="/" style={{ textDecoration: 'none' }}>
+      <Button variant="contained" color="secondary">
+        Go to Home
+      </Button>
+    </Link>
+  </div>
+);
 
 function App() {
   return (
-    <div className="App">
-      {/* Container to center content */}
-      <Container maxWidth="sm" style={{ textAlign: 'center' }}>
-        {/* Typography for the heading, automatically centered by the container's text alignment */}
-        <Typography variant="h5" component="h2" style={{ color: '#FFF', marginBottom: '20px' }}>
-          Set timer for morning
-        </Typography>
-
-        {/* Stack for the buttons, centered horizontally and vertically */}
-        <Stack
-          direction="row"
-          spacing={2}
-          justifyContent="center" // Center items horizontally in the stack
-          alignItems="center" // Center items vertically in the stack
-        >
-          <Button variant="outlined" style={{ borderColor: '#FFF', color: '#FFF' }}>8</Button>
-          <Button variant="outlined" style={{ borderColor: '#FFF', color: '#FFF' }}>15</Button>
-          <Button variant="contained" style={{ backgroundColor: '#4CAF50', color: '#FFF' }}>Set</Button>
-        </Stack>
-      </Container>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Router>
   );
 }
 
