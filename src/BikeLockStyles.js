@@ -1,4 +1,5 @@
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 
 export const DigitInput = styled(InputBase)(({ theme, status }) => ({
@@ -7,22 +8,21 @@ export const DigitInput = styled(InputBase)(({ theme, status }) => ({
   margin: '0 8px',
   fontSize: '2rem',
   textAlign: 'center',
+  lineHeight: '60px', // Adjust line height to vertically center the text
   borderRadius: '10px',
   border: `1px solid ${theme.palette.divider}`,
   backgroundColor: status === 'default' ? 'transparent' :
                    status === 'correct' ? theme.palette.success.light :
                    theme.palette.error.light,
-  transition: theme.transitions.create(['background-color', 'border-color', 'box-shadow']),
   '& input': {
     textAlign: 'center',
-    padding: '10px 0',
-  },
-  '&:focus-within': {
-    borderColor: status === 'correct' ? theme.palette.success.main : 
-                  status === 'wrong' ? theme.palette.error.main :
-                  theme.palette.primary.main,
-    boxShadow: `0 0 0 2px ${status === 'correct' ? theme.palette.success.light : 
-                            status === 'wrong' ? theme.palette.error.light :
-                            theme.palette.primary.light}`,
+    padding: '0',
+    pointerEvents: 'none', // Prevents focusing the input directly
   },
 }));
+
+export const DigitContainer = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});

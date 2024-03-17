@@ -1,57 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { DigitInput } from './BikeLockStyles'; // Import the styled component
+import Button from '@mui/material/Button';
+import { DigitInput, DigitContainer } from './BikeLockStyles';
 
 const BikeLock = () => {
-  const [digits, setDigits] = useState(Array(4).fill(''));
+  const [digits, setDigits] = useState([0, 0, 0, 0]);
   const [status, setStatus] = useState('default');
   const [message, setMessage] = useState('');
-  const lockCode = ['1', '2', '3', '4'];
+  const lockCode = [1, 2, 3, 4];
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      const { key } = event;
-      if (key >= 0 && key <= 9) {
-        updateDigits(key);
-      }
-    };
+  const updateDigit = (index, delta) => {
+    // Calculate next digits based on the interaction.
+    setDigits((prevDigits) => {
+      const nextDigits = prevDigits.map((digit, i) => 
+        i === index ? Math.max(0, Math.min(9, digit + delta)) : digit
+      );
+  
+      // Immediately use nextDigits for checking the guess.
+      checkGuess(nextDigits);
+      return nextDigits;
+    });
+  };
 
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [digits]);
-
-  const updateDigits = (num) => {
-    const index = digits.findIndex(digit => digit === '');
-    if (index !== -1) {
-      const newDigits = [...digits];
-      newDigits[index] = num;
-      setDigits(newDigits);
-
-      if (newDigits.every(digit => digit !== '')) {
-        checkGuess(newDigits.join(''));
-      }
+  const handleWheel = (index, event) => {
+    event.preventDefault(); // Prevents the page from scrolling
+    const { deltaY } = event; // Gets the vertical scroll amount
+    if (deltaY < 0) {
+      // Scrolling up
+      updateDigit(index, 1);
+    } else if (deltaY > 0) {
+      // Scrolling down
+      updateDigit(index, -1);
     }
   };
 
-  const resetLock = () => {
-    setDigits(Array(4).fill(''));
-    setMessage('');
-    setStatus('default');
-  };
-
-  const checkGuess = (guess) => {
-    if (guess === lockCode.join('')) {
-      setMessage('Unlocked! You guessed the code!');
-      setStatus('correct');
+  const checkGuess = (nextDigits) => {
+    const correctDigits = nextDigits.filter((digit, index) => digit === lockCode[index]).length;
+  
+    if (correctDigits === 4) {
+        setMessage('Unlocked! You guessed the code!');
+        setStatus('correct');  // This will apply the green color.
+    } else if (correctDigits >= 2) {
+        setMessage('Getting close!');
+        setStatus('default'); // This will remove the green color.
     } else {
-      setMessage('Wrong code. Try again!');
-      setStatus('wrong');
-      setTimeout(() => {
-        resetLock();
-      }, 1500);
-    }
+        // If not correct, reset the message and remove the green color by setting status to 'default'.
+        setMessage('Keep guessing...');
+        setStatus('default');
+        }
   };
 
   return (
@@ -62,26 +59,25 @@ const BikeLock = () => {
       alignItems: 'center',
       height: '100vh',
     }}>
-      <Box sx={{ padding: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-        <Typography variant="h4" gutterBottom>
-          Bike Lock
-        </Typography>
-        <Box sx={{ display: 'flex' }}>
-          {digits.map((digit, index) => (
+      <Typography variant="h4" gutterBottom>
+        Bike Lock
+      </Typography>
+      <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+        {digits.map((digit, index) => (
+          <DigitContainer key={index} onWheel={(e) => handleWheel(index, e)}>
+            <Button onClick={() => updateDigit(index, 1)}>▲</Button>
             <DigitInput
-              key={index}
               readOnly
-              disableUnderline
               value={digit}
-              inputProps={{ 'aria-label': `digit-${index}` }}
               status={status}
             />
-          ))}
-        </Box>
-        <Typography variant="subtitle1" sx={{ mt: 2, height: '24px', color: status === 'wrong' ? 'error.main' : 'success.main' }}>
-          {message}
-        </Typography>
+            <Button onClick={() => updateDigit(index, -1)}>▼</Button>
+          </DigitContainer>
+        ))}
       </Box>
+      <Typography variant="subtitle1" sx={{ mt: 2, minHeight: '24px', color: status === 'correct' ? 'success.main' : 'text.primary' }}>
+        {message || ' '} {/* Ensures space is reserved */}
+      </Typography>
     </Box>
   );
 };
