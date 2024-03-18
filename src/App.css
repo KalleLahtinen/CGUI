@@ -1,21 +1,5 @@
 .App {
-  height: 100vh; /* Full height of the viewport */
-  background-color: #333; /* Background color of the app */
-  color: #FFF; /* For better contrast of any text */
-  display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  text-align: center;
 }
 
 .App-header {
@@ -25,19 +9,63 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.App-header form {
+  margin: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px; /* Smaller font size for labels */
+}
+
+.form-group input,
+.form-group select {
+  font-size: 14px; /* Smaller font size for inputs and selects */
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.greet-button {
+  font-size: 20px; /* Larger font size for the button */
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.greeting-message {
+  margin-top: 20px;
+  color: #90ee90;
+  font-size: larger;
+}
+
+.App-header {
+  text-align: center;
+  padding: 20px;
+}
+
+.image-container {
+  width: 250px; /* Fixed width */
+  height: 250px; /* Fixed height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto; /* Adds margin around the container and centers it horizontally */
+}
+
+.pet-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* This ensures the image fits within the container without stretching */
 }
