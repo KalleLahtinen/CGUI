@@ -1,11 +1,32 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import './Exercise1_2.css';
+import Button from '@mui/material/Button';
+import { Stack, Typography, Container } from '@mui/material';
 
-const Exercise1_2 = () => (
-  <Box p={3}>
-    <Typography variant="h5" gutterBottom>Exercise 1</Typography>
-    <Typography variant="body1">Ta-da! Routers! 🎉</Typography>
-  </Box>
-);
+function Exercise1_2() {
+  return (
+    <div className="Exercise1_2">
+      {/* Container to center content */}
+      <Container maxWidth="sm" style={{ textAlign: 'center' }}>
+        {/* Typography for the heading, automatically centered by the container's text alignment */}
+        <Typography variant="h5" component="h2" style={{ color: '#FFF', marginBottom: '20px' }}>
+          Set timer for morning
+        </Typography>
+
+        {/* Stack for the buttons, centered horizontally and vertically */}
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="center" // Center items horizontally in the stack
+          alignItems="center" // Center items vertically in the stack
+        >
+          <Button variant="outlined" style={{ borderColor: '#FFF', color: '#FFF' }}>8</Button>
+          <Button variant="outlined" style={{ borderColor: '#FFF', color: '#FFF' }}>15</Button>
+          <Button variant="contained" style={{ backgroundColor: '#4CAF50', color: '#FFF' }}>Set</Button>
+        </Stack>
+      </Container>
+    </div>
+  );
+}
 
 export default Exercise1_2;
