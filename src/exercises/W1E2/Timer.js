@@ -1,11 +1,11 @@
 import React from 'react';
-import './Exercise1_2.css';
+import './timer.css';
 import Button from '@mui/material/Button';
 import { Stack, Typography, Container } from '@mui/material';
 
-function Exercise1_2() {
+function Timer() {
   return (
-    <div className="Exercise1_2">
+    <div className="Timer">
       {/* Container to center content */}
       <Container maxWidth="sm" style={{ textAlign: 'center' }}>
         {/* Typography for the heading, automatically centered by the container's text alignment */}
@@ -29,4 +29,4 @@ function Exercise1_2() {
   );
 }
 
-export default Exercise1_2;
+export default Timer;
