@@ -24,6 +24,7 @@ const Layout = () => {
           { label: 'Home', path: '/' },
           { label: 'Exercise 1.2', path: '/exercise1_2' },
           { label: 'Exercise 1.3', path: '/exercise1_3' },
+          { label: 'Exercise 2.2', path: '/exercise2_2' },
           // Add more links as needed
         ].map((item) => (
           <ListItem button key={item.label} component={Link} to={item.path}>
