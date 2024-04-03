@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './Layout';
 import HomePage from './HomePage';
 import NoPage from './NoPage'; // A NoPage for 404 errors
-import Timer from './exercises/W1E2/Timer';
+import Timer from './exercises/w1e2/Timer';
 import Routers from './exercises/w1e3/Routers';
 import BikeLock from './exercises/w2e2/BikeLock';
 import Greeting from './exercises/w2e3/Greeting';
