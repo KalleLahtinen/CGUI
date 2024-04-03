@@ -1,32 +1,24 @@
 import React from 'react';
-import './App.css';
-import Button from '@mui/material/Button';
-import { Stack, Typography, Container } from '@mui/material';
 
-function App() {
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// Import the Layout and other components
+import Layout from './Layout';
+import HomePage from './HomePage';
+import NoPage from './NoPage'; // A NoPage for 404 errors
+import Exercise1_2 from './exercises/exercise1_2/Exercise1_2';
+import Exercise1_3 from './exercises/exercise1_3/Exercise1_3';
+
+export default function App() {
   return (
-    <div className="App">
-      {/* Container to center content */}
-      <Container maxWidth="sm" style={{ textAlign: 'center' }}>
-        {/* Typography for the heading, automatically centered by the container's text alignment */}
-        <Typography variant="h5" component="h2" style={{ color: '#FFF', marginBottom: '20px' }}>
-          Set timer for morning
-        </Typography>
-
-        {/* Stack for the buttons, centered horizontally and vertically */}
-        <Stack
-          direction="row"
-          spacing={2}
-          justifyContent="center" // Center items horizontally in the stack
-          alignItems="center" // Center items vertically in the stack
-        >
-          <Button variant="outlined" style={{ borderColor: '#FFF', color: '#FFF' }}>8</Button>
-          <Button variant="outlined" style={{ borderColor: '#FFF', color: '#FFF' }}>15</Button>
-          <Button variant="contained" style={{ backgroundColor: '#4CAF50', color: '#FFF' }}>Set</Button>
-        </Stack>
-      </Container>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="exercise1_2" element={<Exercise1_2 />} />
+          <Route path="exercise1_3" element={<Exercise1_3 />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
