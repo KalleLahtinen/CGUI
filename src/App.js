@@ -14,9 +14,9 @@ import BouncingShapes from './exercises/w3e3/BouncingShapes';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/CGUI">
       <Routes>
-        <Route path="/CGUI" element={<Layout />}>
+        <Route path="" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="week1-exercise2" element={<Timer />} />
           <Route path="week1-exercise3" element={<Routers />} />
