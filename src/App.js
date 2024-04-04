@@ -16,7 +16,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/CGUI" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="week1-exercise2" element={<Timer />} />
           <Route path="week1-exercise3" element={<Routers />} />
