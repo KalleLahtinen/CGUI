@@ -1,0 +1,43 @@
+/* ImageCarousel.css */
+.carousel-container {
+  position: relative;
+  width: 100%; /* Use the full width */
+  height: calc(100vh - 60px); /* Use the full height, minus the height of the navbar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.carousel-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Ensures that the image is scaled to fit while maintaining its aspect ratio */
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 20px;
+  text-shadow: 2px 2px 4px #000000;
+  background-color: rgba(0, 0, 0, 0.5); /* Adds a semi-transparent background to the caption for readability */
+  padding: 10px;
+  white-space: nowrap; /* Ensures the text does not wrap */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Ensures the text is neatly ellipsized if too long */
+}
+
+.carousel-index {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white;
+  font-size: 20px;
+  text-shadow: 2px 2px 4px #000000;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border-radius: 5px;
+}

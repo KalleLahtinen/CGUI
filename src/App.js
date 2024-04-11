@@ -11,6 +11,7 @@ import BikeLock from './exercises/w2e2/BikeLock';
 import Greeting from './exercises/w2e3/Greeting';
 import BikeLockImproved from './exercises/w3e1/BikeLockImproved';
 import BouncingShapes from './exercises/w3e3/BouncingShapes';
+import ImageCarousel from './exercises/w4e3/ImageCarousel';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="week2-exercise3" element={<Greeting />} />
           <Route path="week3-exercise1" element={<BikeLockImproved />} />
           <Route path="week3-exercise3" element={<BouncingShapes />} />
+          <Route path="week4-exercise3" element={<ImageCarousel />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
